@@ -17,6 +17,6 @@ stage('Slack Notification'){
 	}
   
 	stage('Email Notification'){
-	mail bcc: '', body: 'New Build Added', cc: '', from: '', replyTo: '', subject: 'New Build Added by Arun', to: 'achieverarun10@gmail.com'
+	mail bcc: '', body: 'Built done', cc: '', from: 'achieverarun10@gmail.com', replyTo: '', subject: 'Build by Arun', to: 'achieverarun10@gmail.com'
 	}
 }
