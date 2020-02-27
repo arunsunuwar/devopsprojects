@@ -7,8 +7,13 @@ node{
 		sh "${mvnHome}/bin/mvn package"
 	}
 	stage('Deploy to Tomcat'){
-		slackSend channel: '#jenkinsnotification', color: '#439f30', message: 'New Build Deploy test', teamDomain: 'intelycoreworkspace', tokenCredentialId: 'slack-secret' {
-		sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@http://107.22.122.86:/opt/tomcat9/webapps/'
+		sshagent(['tomcat-dev']) {
+		sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@107.22.122.86:/opt/tomcat9/webapps/'
 	}
 	}
+
+stage('Slack Notification'){
+	slackSend  baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkinsnotification', color: '#439FE0', message: 'New Build deployed test', teamDomain: 'intelycoreworkspace', tokenCredentialId: 'slack-secret'
+	}
+  
 }
