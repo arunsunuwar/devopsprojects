@@ -1,20 +1,22 @@
 node{
 	stage('SCM Checkout'){
-		git branch: 'slacknotification', url: 'https://github.com/prabhatpankaj/devopsprojects.git'
+		git branch: 'wartomcat', url: 'https://github.com/arunsunuwar/devopsprojects.git'
 	}
 	stage('Compile-Package'){
 		def mvnHome = tool name: 'maven-3.5.4', type: 'maven'
 		sh "${mvnHome}/bin/mvn package"
 	}
 	stage('Deploy to Tomcat'){
-		sshagent(['tomcatserver']) {
-		sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@18.141.11.191:/opt/tomcat9/webapps/'
+		sshagent(['tomcat-dev']) {
+		sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@107.22.122.86:/opt/tomcat9/webapps/'
 	}
 	}
-	stage('Slack Notification'){
-		slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#intelycore09', color: '#439FE0', message: 'New Build deployed test', teamDomain: 'intelycore09', tokenCredentialId: 'slack-secret'
+
+stage('Slack Notification'){
+	slackSend  baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkinsnotification', color: '#439FE0', message: 'New Build deployed Arun', teamDomain: 'intelycoreworkspace', tokenCredentialId: 'slack-secret'
 	}
+  
 	stage('Email Notification'){
-	mail bcc: '', body: 'build success done', cc: '', from: 'prabhatiitbhu@gmail.com', replyTo: 'prabhatiitbhu@gmail.com', subject: 'build success', to: 'prabhat@aptence.com'
+	mail bcc: '', body: 'New Build Added', cc: '', from: '', replyTo: '', subject: 'New Build Added by Arun', to: 'achieverarun10@gmail.com'
 	}
 }
