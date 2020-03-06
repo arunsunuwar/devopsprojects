@@ -41,9 +41,9 @@ stage('Update Previous Image'){
  }
 
  stage('Deploy to Dev Environment'){
-   def dockerRun = 'docker run -d -p 8080:8080 --name myweb prabhatiitbhu/myweb:0.0.1'
+   def dockerRun = 'docker run -d -p 8080:8080 --name myweb arunsunuwar10/myweb:0.0.1'
    sshagent(['docker-dev']) {
-    sh "ssh -o StrictHostKeyChecking=no ubuntu@13.229.103.251 ${dockerRun}"
+    sh "ssh -o StrictHostKeyChecking=no ubuntu@18.234.94.248 ${dockerRun}"
    }
 
  }
