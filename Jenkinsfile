@@ -33,7 +33,7 @@ stage('Update Previous Image'){
 	try{
 		def dockerRm = 'docker rm -f myweb'
 		sshagent(['docker-dev']) {
-			sh "ssh -o StrictHostKeyChecking=no ubuntu@13.229.103.251 ${dockerRm}"
+			sh "ssh -o StrictHostKeyChecking=no ubuntu@18.234.94.248 ${dockerRm}"
 		}
 	}catch(error){
 		//  do nothing if there is an exception
