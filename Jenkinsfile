@@ -9,7 +9,7 @@ node{
  }
  
  stage('Build Docker Imager'){
-   sh 'docker build -t prabhatiitbhu/myweb:0.0.1 .'
+   sh 'docker build -t arunsunuwar10/myweb:0.0.1 .'
  }
  stage('Push to Docker Hub'){
 	 withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
