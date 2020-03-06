@@ -1,6 +1,6 @@
 node{
  stage('Git Checkout'){
-	git branch: 'dockercicd', url: 'https://github.com/prabhatpankaj/devopsprojects.git'  
+	git branch: 'dockercicd', url: 'https://github.com/arunsunuwar/devopsprojects.git'  
  }
  stage('Maven Package'){
 	def mvnHome = tool name: 'maven-3', type: 'maven'
