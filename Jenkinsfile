@@ -13,7 +13,7 @@ node{
  }
  stage('Push to Docker Hub'){
 	 withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
-        sh "docker login -u prabhatiitbhu -p ${dockerHubPwd}"
+        sh "docker login -u arunsunuwar -p ${dockerHubPwd}"
      }
 	 sh 'docker push prabhatiitbhu/myweb:0.0.1'
  }
